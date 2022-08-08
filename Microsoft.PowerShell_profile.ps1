@@ -4,8 +4,8 @@ Import-Module Terminal-Icons
 
 Set-Alias -Name "rdns" -Value "Resolve-DnsName"
 
-$userAgent = [Microsoft.PowerShell.Commands.PSUserAgent]::Chrome
-$PSDefaultParameterValues = @{"Invoke-WebRequest:UserAgent"=$userAgent;"Invoke-RestMethod:UserAgent"=$userAgent}
+Set-Variable -Name userAgent -Scope Global -Value $([Microsoft.PowerShell.Commands.PSUserAgent]::Chrome)
+# $PSDefaultParameterValues = @{"Invoke-WebRequest:UserAgent"=$userAgent;"Invoke-RestMethod:UserAgent"=$userAgent}
 
 Set-Item -Path function:\kali -Value {
     if ((Get-Service vmms).Status -ne "Running"){Start-Service vmms}
