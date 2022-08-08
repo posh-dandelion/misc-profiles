@@ -11,7 +11,7 @@ Set-Item -Path function:\kali -Value {
     }
     Write-Host $ip -NoNewline
     # Start-Process PowerShell -ArgumentList "-WindowStyle Minimized -Command ssh dandelion@$kali `"tar czvf /tmp/dandelion.tgz /home/dandelion/`";scp dandelion@$kali`:/tmp/dandelion.tgz `"D:\Backups\$(get-date -Format 'yyyyMMddHHmmss')_dandelion_kali.tgz`";ssh dandelion@$kali `"rm /tmp/dandelion.tgz`""
-    $kali = "dandelion@$ip"
+    Set-Variable kali -Scope Global -Value "dandelion@$ip"
     ssh $kali
 }
 
