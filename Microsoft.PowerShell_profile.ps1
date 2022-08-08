@@ -1,5 +1,4 @@
-Import-Module oh-my-posh
-Set-PoshPrompt -Theme paradox
+oh-my-posh init pwsh | Invoke-Expression
 
 Set-Item -Path function:\kali -Value {
     if ((Get-Service vmms).Status -ne "Running"){Start-Service vmms}
