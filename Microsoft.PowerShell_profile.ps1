@@ -5,13 +5,14 @@ Set-Item -Path function:\kali -Value {
     if ((Get-Service vmms).Status -ne "Running"){Start-Service vmms}
     if ((Get-VM kali).State -ne "Running"){Start-VM kali}
     Remove-Variable kali -ea 0 -Scope Global
-    while ($kali -notmatch "^1((7|9)2|0)"){
-        Write-Host "`r$kali" -NoNewline
-        Set-Variable kali -Scope Global -Value $(Get-VM kali|Get-VMNetworkAdapter).IPAddresses[0]
+    while ($ip -notmatch "^1((7|9)2|0)"){
+        Write-Host "`r$ip" -NoNewline
+        Set-Variable ip -Scope Global -Value $(Get-VM kali|Get-VMNetworkAdapter).IPAddresses[0]
     }
-    Write-Host $kali -NoNewline
-    Start-Process PowerShell -ArgumentList "-WindowStyle Minimized -Command ssh dandelion@$kali `"tar czvf /tmp/dandelion.tgz /home/dandelion/`";scp dandelion@$kali`:/tmp/dandelion.tgz `"D:\Backups\$(get-date -Format 'yyyyMMddHHmmss')_dandelion_kali.tgz`";ssh dandelion@$kali `"rm /tmp/dandelion.tgz`""
-    ssh dandelion@$kali
+    Write-Host $ip -NoNewline
+    # Start-Process PowerShell -ArgumentList "-WindowStyle Minimized -Command ssh dandelion@$kali `"tar czvf /tmp/dandelion.tgz /home/dandelion/`";scp dandelion@$kali`:/tmp/dandelion.tgz `"D:\Backups\$(get-date -Format 'yyyyMMddHHmmss')_dandelion_kali.tgz`";ssh dandelion@$kali `"rm /tmp/dandelion.tgz`""
+    $kali = "dandelion@$ip"
+    ssh $kali
 }
 
 function ilak {
@@ -19,4 +20,4 @@ function ilak {
     if ((Get-Service vmms).Status -eq "Running"){Stop-Service vmms}
 }
 
-Invoke-RestMethod -Uri https://wttr.in/Rapid_City
+Invoke-RestMethod -Uri https://wttr.in/
