@@ -1,4 +1,6 @@
-oh-my-posh init pwsh | Invoke-Expression
+$POSHTHEME = "jonnychipz"
+
+(@(&"$env:LOCALAPPDATA/Programs/oh-my-posh/bin/oh-my-posh.exe" init pwsh --config="$env:LOCALAPPDATA\Programs\oh-my-posh\themes\$POSHTHEME.omp.json" --print) -join "`n") | Invoke-Expression
 
 Import-Module Terminal-Icons
 
