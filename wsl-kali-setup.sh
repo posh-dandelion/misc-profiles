@@ -1,6 +1,7 @@
 !#/bin/bash
 
-sudo apt update && sudo apt install tmux lolcat fortune-mod kali-win-kex zsh zsh-autosuggestions vim -y
+touch ~/.hushlogin
+sudo apt update && sudo apt install tmux lolcat fortune-mod kali-win-kex zsh zsh-autosuggestions vim kali-linux-large -y
 wget https://raw.githubusercontent.com/posh-dandelion/misc-profiles/main/.zshrc -O ~/.zshrc
 sudo sed -i "s-/bin/bash-/bin/zsh-g" /etc/passwd
 sudo apt update && sudo apt dist-upgrade -y && sudo apt autoremove -y && sudo apt autoclean -y
